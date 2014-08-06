@@ -11,7 +11,13 @@
 	(:import org.bson.types.ObjectId
 					 java.io.StringReader
 					 de.l3s.boilerpipe.extractors.ArticleExtractor
+					 org.jsoup
 					 ))
+
+(defn strip-html-tags
+	"Function strips HTML tags from string."
+	[s]
+	(.text (org.jsoup/parse s)))
 
 (def counter (agent 0))
 
@@ -29,10 +35,10 @@
 																	 ;(println "Got body for " url)
 																	 (let [parsed-html (html/html-resource (StringReader. body))]
 																		 (doseq [a-tag (html/select parsed-html [:a])]
-																			 (let [aurl (get-in a-tag [:attrs :href]), text (.getText extractor body), isa (not (clojure.string/blank? text))]
+																			 (let [aurl (get-in a-tag [:attrs :href]), plain (strip-html-tags body), text (.getText extractor body), isa (not (clojure.string/blank? text))]
 																				 (if isa (do
 																									 (mc/insert db coll {:url aurl, :time (System/currentTimeMillis)})
-																									 (mc/update db "page" {:uhash (digest/md5 aurl)} {$set {:html body, :text text, :isa (empty? text), :url aurl, :time (System/currentTimeMillis)}} {:upsert true})
+																									 (mc/update db "page" {:uhash (digest/md5 aurl)} {$set {:html body, :text text, :isa (empty? text), :plain plain, :url aurl, :time (System/currentTimeMillis)}} {:upsert true})
 																									 ))
 																				 )))
 																	 ))

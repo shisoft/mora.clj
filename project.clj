@@ -11,6 +11,7 @@
 									[enlive "1.1.5"]
 									[digest "1.4.4"]
 									[com.syncthemall/boilerpipe "1.2.2"]
+									[org.jsoup/jsoup "1.7.2"]
 									;[io.curtis/boilerpipe-clj "0.3.0"]
 								]
   :main ^:skip-aot mora.main

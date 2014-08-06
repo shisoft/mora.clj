@@ -4,12 +4,14 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [
-									[org.clojure/clojure "1.6.0"],
-									[http-kit "2.1.18"],
-									[com.novemberain/monger "2.0.0"],
-									[clojure-hbase "0.92.4"],
-									[enlive "1.1.5"],
+									[org.clojure/clojure "1.6.0"]
+									[http-kit "2.1.18"]
+									[com.novemberain/monger "2.0.0"]
+									[clojure-hbase "0.92.4"]
+									[enlive "1.1.5"]
 									[digest "1.4.4"]
+									[com.syncthemall/boilerpipe "1.2.2"]
+									;[io.curtis/boilerpipe-clj "0.3.0"]
 								]
   :main ^:skip-aot mora.main
   :target-path "target/%s"

@@ -15,6 +15,7 @@
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.3" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-hbase:0.92.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.novemberain/monger:2.0.0" level="project" />
+    <orderEntry type="library" name="Leiningen: com.syncthemall/boilerpipe:1.2.2" level="project" />
     <orderEntry type="library" name="Leiningen: digest:1.4.4" level="project" />
     <orderEntry type="library" name="Leiningen: enlive:1.1.5" level="project" />
     <orderEntry type="library" name="Leiningen: http-kit:2.1.18" level="project" />
@@ -76,6 +77,9 @@
     <orderEntry type="library" scope="RUNTIME" name="Leiningen: commons-el:1.0" level="project" />
     <orderEntry type="library" name="Leiningen: clojurewerkz/support:0.20.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.mongodb/mongo-java-driver:2.12.1" level="project" />
+    <orderEntry type="library" name="Leiningen: net.sourceforge.nekohtml/nekohtml:1.9.20" level="project" />
+    <orderEntry type="library" name="Leiningen: xerces/xercesImpl:2.11.0" level="project" />
+    <orderEntry type="library" name="Leiningen: xml-apis:1.4.01" level="project" />
     <orderEntry type="library" name="Leiningen: org.ccil.cowan.tagsoup/tagsoup:1.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.jsoup/jsoup:1.7.2" level="project" />
   </component>

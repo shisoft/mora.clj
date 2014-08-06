@@ -15,6 +15,7 @@
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.3" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-hbase:0.92.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.novemberain/monger:2.0.0" level="project" />
+    <orderEntry type="library" name="Leiningen: digest:1.4.4" level="project" />
     <orderEntry type="library" name="Leiningen: enlive:1.1.5" level="project" />
     <orderEntry type="library" name="Leiningen: http-kit:2.1.18" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.6.0" level="project" />

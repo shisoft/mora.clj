@@ -6,10 +6,12 @@
 					 [monger.query :as mq]
 					 [monger.operators :refer :all]
 					 [net.cgrand.enlive-html :as html]
+					 [digest]
 					 [clojure.pprint])
 	(:import org.bson.types.ObjectId
 					 java.io.StringReader))
-(declare md5)
+
+
 (defn -main
 	[& args]
 	(let [conn (mg/connect {:host "127.0.0.1"})
@@ -26,17 +28,7 @@
 											 (doseq [a-tag (html/select parsed-html [:a])]
 												 (let [aurl (get-in a-tag [:attrs :href])]
 													 (mc/insert db coll {:url aurl, :time (System/currentTimeMillis)})
-													 (mc/update db "page" {:uhash (md5 aurl)} {$set {:html body, :url aurl, :time (System/currentTimeMillis)}} {:upsert true})))
+													 (mc/update db "page" {:uhash (digest/md5 aurl)} {$set {:html body, :url aurl, :time (System/currentTimeMillis)}} {:upsert true})))
 											 ))
 									 )))))
 
-(defn md5
-	"Generate a md5 checksum for the given string"
-	[token]
-	(let [hash-bytes
-				(doto (java.security.MessageDigest/getInstance "MD5")
-					(.reset)
-					(.update (.getBytes token)))]
-		(.toString
-			(new java.math.BigInteger 1 (.digest hash-bytes)) ; Positive and the size of the number
-			16))) ; Use base16 i.e. hex

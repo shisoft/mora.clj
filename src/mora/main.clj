@@ -25,7 +25,9 @@
 (defn check-abs-link [href base-url]
 	(if (.contains href "://")
 		href
-		(str (StringUtils/join (drop-last (seq (.split base-url "//"))) "/") href)))
+		(str (StringUtils/join (drop-last (seq (.split (str (if (.equals (last base-url) \/) base-url (str base-url "/")) " ") "/"))) "/")
+				 "/"
+				 (if (.equals (first href) \/) (href rest) href))))
 
 (defn claw []
 	(let [conn (mg/connect {:host "127.0.0.1"})
@@ -36,7 +38,7 @@
 						(while true
 							(let [{url :url} (mc/find-and-modify db coll {} {$set {:time (System/currentTimeMillis)}} {:sort (array-map :time 1, :_id 1)})]
 								;(println "Get body for " url)
-								(http/get url {:as :text}
+								@(http/get url {:as :text}
 													(fn [{:keys [body error] :as a}]
 														;(println "Got body for " url)
 														(if (not error)

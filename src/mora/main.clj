@@ -12,6 +12,7 @@
 					 java.io.StringReader
 					 de.l3s.boilerpipe.extractors.ArticleExtractor
 					 org.jsoup.Jsoup
+					 org.apache.commons.lang.StringUtils
 					 ))
 
 (defn strip-html-tags
@@ -20,6 +21,11 @@
 	(.text (org.jsoup.Jsoup/parse s)))
 
 (def counter (agent 0))
+
+(defn check-abs-link [href base-url]
+	(if (.contains href "://")
+		href
+		(str (StringUtils/join (drop-last (seq (.split base-url "//"))) "/") href)))
 
 (defn claw []
 	(let [conn (mg/connect {:host "127.0.0.1"})
@@ -37,10 +43,10 @@
 															(time
 																(let [parsed-html (html/html-resource (StringReader. body))]
 																	(doseq [a-tag (html/select parsed-html [:a])]
-																		(let [aurl (get-in a-tag [:attrs :href])]
+																		(let [aurl (check-abs-link (get-in a-tag [:attrs :href]) url)]
 																			(mc/insert db coll {:url aurl, :time (System/currentTimeMillis)})
 																			))
-																	(let [plain (strip-html-tags body), text (.getText extractor body), isa (not (clojure.string/blank? plain))]
+																	(let [plain (strip-html-tags body), text (.getText extractor body), isa (not (clojure.string/blank? text))]
 																							 (if isa (mc/update db "page" {:uhash (digest/md5 url)} {$set {:html body, :text text, :isa (empty? text), :plain plain, :url url, :time (System/currentTimeMillis)}} {:upsert true})))))
 															(println "Failed" error))
 														))

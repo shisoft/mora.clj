@@ -22,6 +22,7 @@
     <orderEntry type="library" name="Leiningen: org.clojars.clizzin/jsoup:1.5.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.6.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.nrepl:0.2.3" level="project" />
+    <orderEntry type="library" name="Leiningen: ritz/ritz-nrepl-middleware:0.7.0" level="project" />
     <orderEntry type="library" name="Leiningen: log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Leiningen: org.apache.hbase/hbase:0.92.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.logging:0.2.3" level="project" />
@@ -83,6 +84,8 @@
     <orderEntry type="library" name="Leiningen: xml-apis:1.4.01" level="project" />
     <orderEntry type="library" name="Leiningen: org.ccil.cowan.tagsoup/tagsoup:1.2.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.jsoup/jsoup:1.7.2" level="project" />
+    <orderEntry type="library" name="Leiningen: ritz/ritz-repl-utils:0.7.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.tcrawley/dynapath:0.2.1" level="project" />
   </component>
 </module>
 
